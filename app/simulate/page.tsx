@@ -233,10 +233,6 @@ export default function AgentSphere() {
       <div className="max-w-7xl mx-auto flex">
         {/* Left Sidebar */}
         <div className="w-64 p-4 border-r border-gray-800 sticky top-0 h-screen">
-          <div className="mb-8">
-            <div className="text-2xl font-bold">𝕏</div>
-          </div>
-
           <nav className="space-y-2">
             {[
               { icon: Home, label: "Home", active: true },
