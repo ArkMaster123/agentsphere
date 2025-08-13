@@ -103,16 +103,19 @@ export default function AgentSphereLanding() {
   return (
     <div className={`min-h-screen w-full relative transition-colors duration-300 ${
       isDarkMode 
-        ? 'bg-[#0a0a0a] text-white' 
-        : 'bg-[#fafafa] text-gray-900'
+        ? 'bg-gray-900 text-white' 
+        : 'bg-white text-gray-900'
     }`}>
       {/* Diagonal Grid with Light/Dark */}
       <div
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
-          backgroundImage: isDarkMode ? 'none' : `
-            repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.1) 0, rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 20px),
-            repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.1) 0, rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 20px)
+          backgroundImage: isDarkMode ? `
+            repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.05) 0, rgba(255, 255, 255, 0.05) 1px, transparent 1px, transparent 20px),
+            repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 0, rgba(255, 255, 255, 0.05) 1px, transparent 1px, transparent 20px)
+          ` : `
+            repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.05) 0, rgba(0, 0, 0, 0.05) 1px, transparent 1px, transparent 20px),
+            repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.05) 0, rgba(0, 0, 0, 0.05) 1px, transparent 1px, transparent 20px)
           `,
           backgroundSize: "40px 40px",
         }}
@@ -122,7 +125,7 @@ export default function AgentSphereLanding() {
       {FLOATING_ELEMENTS.map(({ id, icon: Icon, color, delay, x, y }) => (
         <div
           key={id}
-          className={`absolute ${color} opacity-20 animate-float`}
+          className={`absolute ${color} opacity-30 animate-float`}
           style={{
             left: x,
             top: y,
@@ -185,7 +188,7 @@ export default function AgentSphereLanding() {
               {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </Button>
             <Link href="/simulate">
-              <Button className="bg-gray-900 hover:bg-gray-800 text-white px-6 py-2 rounded-lg font-medium">
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium shadow-lg">
                 Launch App
               </Button>
             </Link>
@@ -206,14 +209,14 @@ export default function AgentSphereLanding() {
           </h1>
 
           <p className={`text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed ${
-            isDarkMode ? 'text-gray-300' : 'text-gray-600'
+            isDarkMode ? 'text-gray-200' : 'text-gray-700'
           }`}>
             AgentSphere gives you the viral insights you never had to guess for in every post, without you even having
             to publish.
           </p>
 
           <Link href="/simulate">
-            <Button className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold mb-16">
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold mb-16 shadow-lg">
               <Play className="w-5 h-5 mr-2" />
               Try Your First Simulation
             </Button>
@@ -221,35 +224,39 @@ export default function AgentSphereLanding() {
 
           {/* Interactive Demo */}
           <div className="max-w-2xl mx-auto">
-            <Card className={`p-6 border shadow-xl transition-colors duration-300 ${
+            <Card className={`p-6 border-2 shadow-2xl transition-colors duration-300 ${
               isDarkMode 
-                ? 'bg-gray-900/80 backdrop-blur-sm border-gray-700' 
-                : 'bg-white/80 backdrop-blur-sm border-white/20'
+                ? 'bg-gray-800 border-gray-600' 
+                : 'bg-white border-gray-200'
             }`}>
               <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold">
+                <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
                   You
                 </div>
                 <div className="flex-1">
-                  <div className={`rounded-lg p-4 mb-4 ${
-                    isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
+                  <div className={`rounded-lg p-4 mb-4 border ${
+                    isDarkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-200'
                   }`}>
                     <Textarea
                       value={demoText}
                       readOnly
-                      className={`border-none resize-none text-lg ${
-                        isDarkMode ? 'bg-gray-800 text-white' : 'bg-transparent'
+                      className={`border-none resize-none text-lg font-medium ${
+                        isDarkMode ? 'bg-gray-700 text-white' : 'bg-gray-50 text-gray-900'
                       }`}
                       placeholder="What's happening?"
                       rows={2}
                     />
                     <div className="flex items-center justify-between mt-2">
                       <div className="flex space-x-2">
-                        <Badge variant="outline" className="text-xs">
+                        <Badge variant="outline" className={`text-xs ${
+                          isDarkMode ? 'border-gray-600 text-gray-300' : 'border-gray-300 text-gray-700'
+                        }`}>
                           <Users className="w-3 h-3 mr-1" />
                           Standard Scale
                         </Badge>
-                        <Badge variant="outline" className="text-xs">
+                        <Badge variant="outline" className={`text-xs ${
+                          isDarkMode ? 'border-gray-600 text-gray-300' : 'border-gray-300 text-gray-700'
+                        }`}>
                           <Zap className="w-3 h-3 mr-1" />
                           1K Agents
                         </Badge>
@@ -257,7 +264,7 @@ export default function AgentSphereLanding() {
                       {isSimulating && (
                         <div className="flex items-center space-x-2 text-blue-500">
                           <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                          <span className="text-sm">Simulating...</span>
+                          <span className="text-sm font-medium">Simulating...</span>
                         </div>
                       )}
                     </div>
@@ -271,13 +278,13 @@ export default function AgentSphereLanding() {
                           key={agent.id}
                           className={`flex items-center space-x-3 p-3 rounded-lg border transition-all duration-300 ${
                             isDarkMode 
-                              ? 'bg-gray-800/50 border-gray-700' 
-                              : 'bg-white/50 border-gray-200'
+                              ? 'bg-gray-700 border-gray-600' 
+                              : 'bg-white border-gray-200'
                           }`}
                         >
                           <span className="text-lg">{agent.avatar}</span>
                           <div className="flex-1">
-                            <span className={`font-medium text-sm ${
+                            <span className={`font-semibold text-sm ${
                               isDarkMode ? 'text-white' : 'text-gray-900'
                             }`}>{agent.name}</span>
                             <div className="flex items-center space-x-2 mt-1">
@@ -286,8 +293,8 @@ export default function AgentSphereLanding() {
                                 <span className="text-xs">💬</span>
                                 <span className="text-xs">♻️</span>
                               </div>
-                              <div className={`flex-1 h-1 rounded-full overflow-hidden ${
-                                isDarkMode ? 'bg-gray-700' : 'bg-gray-200'
+                              <div className={`flex-1 h-2 rounded-full overflow-hidden ${
+                                isDarkMode ? 'bg-gray-600' : 'bg-gray-200'
                               }`}>
                                 <div
                                   className={`h-full transition-all duration-500 ${
@@ -310,27 +317,27 @@ export default function AgentSphereLanding() {
                   {/* Results Summary */}
                   {showResults && (
                     <div className="grid grid-cols-3 gap-4 animate-fade-in">
-                      <div className={`text-center p-3 rounded-lg ${
-                        isDarkMode ? 'bg-green-900/50' : 'bg-green-50'
+                      <div className={`text-center p-3 rounded-lg border ${
+                        isDarkMode ? 'bg-green-900/50 border-green-700' : 'bg-green-50 border-green-200'
                       }`}>
                         <div className="text-2xl font-bold text-green-600">87%</div>
-                        <div className={`text-xs ${
+                        <div className={`text-xs font-medium ${
                           isDarkMode ? 'text-green-400' : 'text-green-700'
                         }`}>Positive</div>
                       </div>
-                      <div className={`text-center p-3 rounded-lg ${
-                        isDarkMode ? 'bg-blue-900/50' : 'bg-blue-50'
+                      <div className={`text-center p-3 rounded-lg border ${
+                        isDarkMode ? 'bg-blue-900/50 border-blue-700' : 'bg-blue-50 border-blue-200'
                       }`}>
                         <div className="text-2xl font-bold text-blue-600">342</div>
-                        <div className={`text-xs ${
+                        <div className={`text-xs font-medium ${
                           isDarkMode ? 'text-blue-400' : 'text-blue-700'
                         }`}>Reactions</div>
                       </div>
-                      <div className={`text-center p-3 rounded-lg ${
-                        isDarkMode ? 'bg-purple-900/50' : 'bg-purple-50'
+                      <div className={`text-center p-3 rounded-lg border ${
+                        isDarkMode ? 'bg-purple-900/50 border-purple-700' : 'bg-purple-50 border-purple-200'
                       }`}>
                         <div className="text-2xl font-bold text-purple-600">9.2</div>
-                        <div className={`text-xs ${
+                        <div className={`text-xs font-medium ${
                           isDarkMode ? 'text-purple-400' : 'text-purple-700'
                         }`}>Viral Score</div>
                       </div>
@@ -345,64 +352,64 @@ export default function AgentSphereLanding() {
 
       {/* Features Section */}
       <section className={`relative z-10 px-6 py-24 transition-colors duration-300 ${
-        isDarkMode ? 'bg-gray-900/50' : 'bg-white/50'
-      } backdrop-blur-sm`}>
+        isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
+      }`}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">This feels like magic</h2>
             <p className={`text-xl ${
-              isDarkMode ? 'text-gray-300' : 'text-gray-600'
+              isDarkMode ? 'text-gray-200' : 'text-gray-700'
             }`}>
               Content Creation. Marketing Campaigns. Viral Testing. Audience Research.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className={`p-8 border shadow-lg hover:shadow-xl transition-all duration-300 ${
+            <Card className={`p-8 border-2 shadow-lg hover:shadow-xl transition-all duration-300 ${
               isDarkMode 
-                ? 'bg-gray-900/80 border-gray-700' 
-                : 'bg-white/80 border-white/20'
+                ? 'bg-gray-800 border-gray-600' 
+                : 'bg-white border-gray-200'
             }`}>
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
                 <Eye className="w-6 h-6 text-blue-600" />
               </div>
               <h3 className="text-xl font-bold mb-4">See Before You Post</h3>
               <p className={`leading-relaxed ${
-                isDarkMode ? 'text-white' : 'text-gray-600'
+                isDarkMode ? 'text-gray-200' : 'text-gray-700'
               }`}>
                 Get instant feedback from thousands of AI agents before your content goes live. No more guessing what
                 will resonate.
               </p>
             </Card>
 
-            <Card className={`p-8 border shadow-lg hover:shadow-xl transition-all duration-300 ${
+            <Card className={`p-8 border-2 shadow-lg hover:shadow-xl transition-all duration-300 ${
               isDarkMode 
-                ? 'bg-gray-900/80 border-gray-700' 
-                : 'bg-white/80 border-white/20'
+                ? 'bg-gray-800 border-gray-600' 
+                : 'bg-white border-gray-200'
             }`}>
               <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
                 <Target className="w-6 h-6 text-green-600" />
               </div>
               <h3 className="text-xl font-bold mb-4">Predict Viral Success</h3>
               <p className={`leading-relaxed ${
-                isDarkMode ? 'text-white' : 'text-gray-600'
+                isDarkMode ? 'text-gray-200' : 'text-gray-700'
               }`}>
                 Our AI agents simulate real audience reactions with 94% accuracy. Know what will go viral before anyone
                 else.
               </p>
             </Card>
 
-            <Card className={`p-8 border shadow-lg hover:shadow-xl transition-all duration-300 ${
+            <Card className={`p-8 border-2 shadow-lg hover:shadow-xl transition-all duration-300 ${
               isDarkMode 
-                ? 'bg-gray-900/80 border-gray-700' 
-                : 'bg-white/80 border-white/20'
+                ? 'bg-gray-800 border-gray-600' 
+                : 'bg-white border-gray-200'
             }`}>
               <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
                 <Shield className="w-6 h-6 text-purple-600" />
               </div>
               <h3 className="text-xl font-bold mb-4">Risk-Free Testing</h3>
               <p className={`leading-relaxed ${
-                isDarkMode ? 'text-white' : 'text-gray-600'
+                isDarkMode ? 'text-gray-200' : 'text-gray-700'
               }`}>
                 Test unlimited content variations in complete privacy. No real posting required, no reputation at risk.
               </p>
@@ -414,10 +421,10 @@ export default function AgentSphereLanding() {
       {/* Trust Section */}
       <section className="relative z-10 px-6 py-24">
         <div className="max-w-4xl mx-auto text-center">
-          <div className={`rounded-2xl p-12 border shadow-xl transition-colors duration-300 ${
+          <div className={`rounded-2xl p-12 border-2 shadow-2xl transition-colors duration-300 ${
             isDarkMode 
-              ? 'bg-gray-900/80 border-gray-700' 
-              : 'bg-white/80 border-white/20'
+              ? 'bg-gray-800 border-gray-600' 
+              : 'bg-white border-gray-200'
           }`}>
             <div className="w-16 h-16 relative mx-auto mb-6 bg-black rounded-lg p-2">
               <img 
@@ -428,7 +435,7 @@ export default function AgentSphereLanding() {
             </div>
             <h2 className="text-3xl font-bold mb-4">"Why would I even use AgentSphere?"</h2>
             <p className={`text-lg mb-8 leading-relaxed ${
-              isDarkMode ? 'text-gray-300' : 'text-gray-600'
+              isDarkMode ? 'text-gray-200' : 'text-gray-700'
             }`}>
               AgentSphere is a <strong>real-time AI</strong> that gives you the power to predict social media success
               during content creation, without anyone knowing. Insights about audience reactions, viral potential, and
@@ -459,12 +466,12 @@ export default function AgentSphereLanding() {
         <div className="max-w-2xl mx-auto">
           <h2 className="text-4xl font-bold mb-6">It's time to predict virality</h2>
           <p className={`text-xl mb-8 ${
-            isDarkMode ? 'text-gray-300' : 'text-gray-600'
+            isDarkMode ? 'text-gray-200' : 'text-gray-700'
           }`}>
             Join thousands of creators who never guess about content performance again.
           </p>
           <Link href="/simulate">
-            <Button className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold">
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold shadow-lg">
               Start Predicting Virality
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>

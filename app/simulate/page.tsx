@@ -598,10 +598,10 @@ export default function AgentSphere() {
             />
           </div>
 
-          {/* Live on X */}
+          {/* AgentSphere */}
           <div className="bg-gray-900 border border-gray-700 rounded-xl p-6 shadow-sm">
             <div className="p-4">
-              <h2 className="text-xl font-bold mb-4">Live on X</h2>
+              <h2 className="text-xl font-bold mb-4">AgentSphere!</h2>
               <div className="space-y-3">
                 {LIVE_SPACES.map((space, idx) => (
                   <div key={idx} className="flex items-start space-x-3 p-2 hover:bg-gray-800 rounded cursor-pointer">
